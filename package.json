@@ -1,7 +1,7 @@
 {
-  "name": "@newswire/doc-to-archieml",
+  "name": "@skwak/doc-to-archieml",
   "version": "1.0.0",
-  "description": "Convert an ArchieML-formatted Google Doc directly into usable data using the Google Docs API.",
+  "description": "Forked version of @newswire/doc-to-archieml",
   "main": "index.js",
   "types": "types.d.ts",
   "files": [
@@ -10,14 +10,13 @@
   ],
   "scripts": {
     "docs": "doctoc README.md --github",
-    "git-pre-commit": "precise-commits",
     "prerelease": "yarn test",
     "release": "git push && git push --tags && yarn publish",
     "test": "mocha --timeout 5000 tests/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rdmurphy/doc-to-archieml.git"
+    "url": "git+https://github.com/skwak/doc-to-archieml"
   },
   "keywords": [
     "googleapis",
@@ -28,19 +27,17 @@
   "author": "Ryan Murphy",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rdmurphy/doc-to-archieml/issues"
+    "url": "https://github.com/skwak/doc-to-archieml/issues"
   },
-  "homepage": "https://github.com/rdmurphy/doc-to-archieml#readme",
+  "homepage": "https://github.com/skwak/doc-to-archieml#readme",
   "dependencies": {
     "archieml": "^0.4.2",
     "googleapis": "^39.2.0"
   },
   "devDependencies": {
-    "@newswire/prettier-config": "^1.0.0",
     "@zeit/git-hooks": "^0.1.4",
     "doctoc": "^1.4.0",
     "mocha": "^8.1.0",
-    "precise-commits": "^1.0.2",
     "prettier": "^1.17.1"
   },
   "prettier": "@newswire/prettier-config"

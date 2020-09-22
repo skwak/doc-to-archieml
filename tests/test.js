@@ -8,11 +8,14 @@ const expectedExtensionsOutput = require('./expected/extensions');
 const basicDocumentId =
   process.env.BASIC_DOCUMENT_ID ||
   '1coln1etP5rT1MqmNtRT7lToGtCi1EAsDVzC5aq0LsIc';
+
 const extensionsDocumentId =
   process.env.EXTENSIONS_DOCUMENT_ID ||
   '1_v0gAswpNnGnDqAx7cU_1bFEK8J7fi8EBvfKvgGZubc';
 
-describe('@newswire/doc-to-archieml', () => {
+const imageDocumentId = process.env.IMAGE_DOCUMENT_ID;
+
+describe('@skwak/doc-to-archieml', () => {
   let auth;
 
   before(async () => {
@@ -37,5 +40,14 @@ describe('@newswire/doc-to-archieml', () => {
     });
 
     assert.deepStrictEqual(actual, expectedExtensionsOutput);
+  });
+
+  it('should return string, hopefully a content URI, f inline object exists', async () => {
+    const actual = await docToArchieML({
+      documentId: imageDocumentId,
+      auth,
+    });
+
+    assert.ok(actual.image);
   });
 });

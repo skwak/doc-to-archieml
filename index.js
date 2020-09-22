@@ -45,7 +45,8 @@ function readElements(document) {
       const paragraph = element.paragraph;
 
       // this is a list
-      const needsBullet = paragraph.bullet != null;
+      const needsBullet =
+        paragraph.bullet != null;
 
       if (paragraph.elements) {
         // all values in the element
@@ -56,15 +57,32 @@ function readElements(document) {
           const isFirstValue = idx === 0;
 
           // prepend an asterisk if this is a list item
-          const prefix = needsBullet && isFirstValue ? '* ' : '';
+          const prefix =
+            needsBullet && isFirstValue
+              ? '* '
+              : '';
 
-          // concat the text
-          text += `${prefix}${readParagraphElement(value)}`;
+          // concat the text;
+          text += `${prefix}${readParagraphElement(
+            value
+          )}`;
+
+          // add content URI if inline object exists with content URI
+          if (value.inlineObjectElement) {
+            const key =
+              value.inlineObjectElement
+                .inlineObjectId;
+            const embeddedObject =
+              document.inlineObjects[key]
+                .inlineObjectProperties
+                .embeddedObject.imageProperties
+                .contentUri;
+            text += embeddedObject;
+          }
         });
       }
     }
   });
-
   return text;
 }
 
